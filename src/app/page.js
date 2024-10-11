@@ -7,16 +7,16 @@ import {
   Button,
   Alert as MuiAlert,
   TextField,
-  createTheme,
   CssBaseline,
   Chip,
+  Box,
 } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { FaBars } from 'react-icons/fa';
 import theme from './theme';
 import dateToStr from './dateUtil';
 
-const useTodoStatus = () => {
+function useTodoStatus() {
   console.log('실행 1');
 
   const [todos, setTodos] = React.useState([]);
@@ -49,7 +49,7 @@ const useTodoStatus = () => {
     removeTodo,
     modifyTodo,
   };
-};
+}
 
 const NewTodoForm = ({ todoStatus }) => {
   const [newTodoContent, setNewTodoContent] = useState('');
@@ -193,6 +193,8 @@ const App = () => {
       <Toolbar />
       <form className="tw-flex tw-flex-col tw-p-4 tw-gap-2" onSubmit={onSubmit}>
         <TextField
+          multiline
+          maxRows={4}
           name="content"
           id="outlined-basic"
           label="할 일 입력"
@@ -209,10 +211,17 @@ const App = () => {
           {todosState.todos.map((todo) => (
             <li className="tw-mb-3" key={todo.id}>
               <div className="tw-flex tw-flex-col tw-gap-1 tw-mb-[30px]">
-                <Chip label={`번호 : ${todo.id}`} variant="outlined"></Chip>
-                <Chip label={`날짜 : ${todo.regDate}`} variant="outlined"></Chip>
-                <div className="tw-p-8 tw-rounded-[15px] tw-shadow tw-whitespace-pre-wrap ">
-                  할 일 : {todo.content}
+                <Chip
+                  className="tw-pt-3"
+                  label={`번호 : ${todo.id}`}
+                  variant="outlined"
+                  color="secondary"></Chip>
+                <Chip
+                  className="tw-pt-3"
+                  label={`날짜 : ${todo.regDate}`}
+                  variant="outlined"></Chip>
+                <div className="tw-p-8 tw-rounded-[15px] tw-shadow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words">
+                  <Box sx={{ color: 'secondary.dark' }}>할 일 : {todo.content}</Box>
                 </div>
               </div>
             </li>
