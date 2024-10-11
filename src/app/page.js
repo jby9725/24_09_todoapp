@@ -30,7 +30,7 @@ function useTodoStatus() {
       regDate: dateToStr(new Date()),
     };
 
-    setTodos((todos) => [...todos, newTodo]); // setTodos([...todos, newTodo]); 변경
+    setTodos((todos) => [newTodo, ...todos]); // setTodos([...todos, newTodo]); 변경
   };
 
   const removeTodo = (id) => {
@@ -158,7 +158,7 @@ const App = () => {
   React.useEffect(() => {
     todosState.addTodo('스쿼트');
     todosState.addTodo('벤치프레스');
-    todosState.addTodo('데드리프트');
+    todosState.addTodo('데드리프트\n런지');
   }, []);
 
   const onSubmit = (e) => {
