@@ -114,14 +114,14 @@ const NewTodoForm = ({ noticeSnackbarStatus }) => {
     const form = e.currentTarget;
     form.content.value = form.content.value.trim();
     if (form.content.value.length == 0) {
-      alert('할 일 써');
+      alert('할 일을 써주세요.');
       form.content.focus();
       return;
     }
     const newTodoId = todosStatus.addTodo(form.content.value);
     form.content.value = '';
     form.content.focus();
-    noticeSnackbarStatus.open(`${newTodoId}번 todo 추가됨`);
+    noticeSnackbarStatus.open(`${newTodoId}번 todo가 추가되었습니다.`);
   };
 
   return (
@@ -132,7 +132,7 @@ const NewTodoForm = ({ noticeSnackbarStatus }) => {
           maxRows={4}
           name="content"
           id="outlined-basic"
-          label="할 일 입력"
+          label="할 일을 입력해주세요."
           variant="outlined"
           autoComplete="off"
         />
@@ -229,7 +229,7 @@ function EditTodoModal({ status, todo, noticeSnackbarStatus }) {
     const form = e.currentTarget;
     form.content.value = form.content.value.trim();
     if (form.content.value.length == 0) {
-      alert('할 일 써');
+      alert('할 일을 써주세요.');
       form.content.focus();
       return;
     }
@@ -237,7 +237,7 @@ function EditTodoModal({ status, todo, noticeSnackbarStatus }) {
     todosStatus.modifyTodo(todo.id, form.content.value);
     status.close();
 
-    noticeSnackbarStatus.open(`${todo.id}번 todo 수정됨`);
+    noticeSnackbarStatus.open(`${todo.id}번 todo 수정되었습니다.`);
 
     // modify v2
     // todosStatus.modifyTodoById(todo.id, form.content.value);
@@ -279,7 +279,7 @@ function TodoOptionDrawer({ status, noticeSnackbarStatus }) {
     }
     todosStatus.removeTodo(status.todoId);
     status.close();
-    noticeSnackbarStatus.open(`${status.todoId}번 todo 삭제됨`, 'error');
+    noticeSnackbarStatus.open(`${status.todoId}번 todo가 삭제되었습니다.`, 'error');
   };
 
   const editTodoModalStatus = useEditTodoModalStatus();
@@ -410,7 +410,7 @@ function App() {
     <>
       <Snackbar open={open} autoHideDuration={4000} onClose={() => setOpen(false)}>
         <Alert variant="filled" severity="sucess">
-          게시물 삭제됨
+          게시물이 삭제되었습니다.
         </Alert>
       </Snackbar>
       <AppBar position="fixed">
@@ -423,7 +423,7 @@ function App() {
               로고
             </a>
           </div>
-          <div className="tw-flex-1 tw-flex tw-justify-end">글쓰기</div>
+          <div className="tw-flex-1 tw-flex tw-justify-end">todo 쓰기</div>
         </Toolbar>
       </AppBar>
       <Toolbar />
